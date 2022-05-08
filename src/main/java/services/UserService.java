@@ -2,7 +2,7 @@ package services;
 
 import java.sql.*;
 import java.awt.*;
-import java.io.File;
+
 
 public class UserService extends Canvas{
     private Connection connection = null;
