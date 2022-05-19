@@ -10,7 +10,8 @@ public class UserService extends Canvas{
 
     public void connectToDatabase(String user, String password){
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/amplify_database",
+            connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/amplify_database?autoReconnect=true&useSSL=false",
                     user,password);
         }catch(Exception exc){
             exc.printStackTrace();
@@ -53,12 +54,24 @@ public class UserService extends Canvas{
             exc.printStackTrace();
         }
     }
+    public String returnUser(String username, String password){
+        try {
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,       ResultSet.CONCUR_UPDATABLE);
+            String query = "select * from users where username='"+username+"'";
+
+            ResultSet resultSet = statement.executeQuery(query);
+            resultSet.absolute(1);
+            return resultSet.getString("username");
+        }catch(Exception exc){
+            exc.printStackTrace();
+        }
+        return null;
+    }
     /*
     public static void main(String[] args){
         UserService UserService_manager=new UserService();
         UserService_manager.connectToDatabase("root","amplify_admin69");
-        UserService_manager.insertUser("Johnutz","1234");
-        //UserService_manager.disconnectFromDatabase();
+        System.out.println(UserService_manager.returnUser("RaMi_Admin","admin_amplify69"));
     }
     */
 }
