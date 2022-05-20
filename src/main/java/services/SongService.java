@@ -18,7 +18,7 @@ public class SongService {
     public void connectToDatabase(String user, String password){
         try {
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/amplify_database?autoReconnect=true&useSSL=false",
+                   "jdbc:mysql://localhost:3306/amplify_database?autoReconnect=true&useSSL=false",
                     user,password);
         }catch(Exception exc){
             exc.printStackTrace();
