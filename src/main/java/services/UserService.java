@@ -4,7 +4,7 @@ import java.sql.*;
 import java.awt.*;
 
 
-public class UserService extends Canvas{
+public class UserService{
     private Connection connection = null;
     private PreparedStatement preparedStatement = null;
 
