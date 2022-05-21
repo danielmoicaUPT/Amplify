@@ -1,19 +1,16 @@
 package services;
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+
 import java.sql.*;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
-
+import javax.sql.rowset.serial.SerialBlob;
 import java.awt.*;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-import javax.sql.rowset.serial.SerialBlob;
 
 public class SongService {
     private Connection connection = null;
@@ -39,6 +36,18 @@ public class SongService {
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             String query = "select * from songs where name='"+name+"'";
+
+            ResultSet resultSet = statement.executeQuery(query);
+            return resultSet;
+        }catch(Exception exc){
+            exc.printStackTrace();
+        }
+        return null;
+    }
+    public ResultSet getSongByID(String id){
+        try {
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            String query = "select * from songs where id='"+id+"'";
 
             ResultSet resultSet = statement.executeQuery(query);
             return resultSet;
@@ -79,10 +88,7 @@ public class SongService {
 
         FileInputStream fis = null;
         try {
-
             fis = new FileInputStream(file);
-
-            //read file into bytes[]
             fis.read(bytes);
             if (fis != null) {
                 fis.close();
@@ -113,28 +119,14 @@ public class SongService {
             file.delete();
         }
     }
-    /*
-    private void playSong(String songName){
-        Media hit = new Media(new File(songName).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(hit);
-        mediaPlayer.play();
-    }*/
-    /*
+
+/*
     public static void main(String[] args){
         try {
-            SongService player = new SongService();
-            player.connectToDatabase("root", "amplify_admin69");
-            //ResultSet set = player.getSongsByName("123");
-            //set.absolute(1);
-            //System.out.println(set.getString(1));
-            //player.convertByteArrayToMP3(set.getString(1),set.getBytes(2));
-            byte[] song_bytes=player.convertMP3ToByteArray("Kafana");
-            Blob song_blob=new SerialBlob(song_bytes);
-            player.insertSong("Kafana","Dubioza Kolektiv",song_blob,"Alternative");
-            player.disconnectFromDatabase();
+
         }catch(Exception exc){
             exc.printStackTrace();
         }
     }
-    */
+*/
 }

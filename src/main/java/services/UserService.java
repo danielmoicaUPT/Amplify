@@ -1,5 +1,7 @@
 package services;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.*;
 import java.awt.*;
 
@@ -54,7 +56,24 @@ public class UserService{
             exc.printStackTrace();
         }
     }
-    public String returnUser(String username, String password){
+    public byte[] convertPNGToByteArray(String name) {
+
+        File file = new File(".\\src\\main\\resources\\temp\\" + name + ".png");
+        byte[] bytes = new byte[(int) file.length()];
+
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(file);
+            fis.read(bytes);
+            if (fis != null) {
+                fis.close();
+            }
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
+        return bytes;
+    }
+    public String getUser(String username, String password){
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,       ResultSet.CONCUR_UPDATABLE);
             String query = "select * from users where username='"+username+"'";
@@ -67,11 +86,18 @@ public class UserService{
         }
         return null;
     }
+    void purgeDirectory(File dir) {
+        for (File file: dir.listFiles()) {
+            if (file.isDirectory())
+                purgeDirectory(file);
+            file.delete();
+        }
+    }
     /*
     public static void main(String[] args){
         UserService UserService_manager=new UserService();
         UserService_manager.connectToDatabase("root","amplify_admin69");
-        System.out.println(UserService_manager.returnUser("RaMi_Admin","admin_amplify69"));
+        System.out.println(UserService_manager.getUser("RaMi_Admin","admin_amplify69"));
     }
     */
 }
