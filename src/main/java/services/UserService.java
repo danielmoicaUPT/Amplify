@@ -1,12 +1,14 @@
 package services;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.*;
 import java.awt.*;
 import java.security.*;
 import java.nio.charset.StandardCharsets;
 
 
-public class UserService extends Canvas{
+public class UserService{
     private Connection connection = null;
     private PreparedStatement preparedStatement = null;
 
@@ -56,7 +58,24 @@ public class UserService extends Canvas{
             exc.printStackTrace();
         }
     }
-    public String returnUser(String username, String password){
+    public byte[] convertPNGToByteArray(String name) {
+
+        File file = new File(".\\src\\main\\resources\\temp\\" + name + ".png");
+        byte[] bytes = new byte[(int) file.length()];
+
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(file);
+            fis.read(bytes);
+            if (fis != null) {
+                fis.close();
+            }
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
+        return bytes;
+    }
+    public String getUser(String username, String password){
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,       ResultSet.CONCUR_UPDATABLE);
             String query = "select * from users where username='"+username+"'";
@@ -68,6 +87,13 @@ public class UserService extends Canvas{
             exc.printStackTrace();
         }
         return null;
+    }
+    void purgeDirectory(File dir) {
+        for (File file: dir.listFiles()) {
+            if (file.isDirectory())
+                purgeDirectory(file);
+            file.delete();
+        }
     }
     private static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
@@ -94,7 +120,7 @@ public class UserService extends Canvas{
     public static void main(String[] args){
         UserService UserService_manager=new UserService();
         UserService_manager.connectToDatabase("root","amplify_admin69");
-        System.out.println(UserService_manager.returnUser("RaMi_Admin","admin_amplify69"));
+        System.out.println(UserService_manager.getUser("RaMi_Admin","admin_amplify69"));
     }
     */
 }
