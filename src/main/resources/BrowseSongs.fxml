@@ -7,9 +7,11 @@
    <children>
       <TextField fx:id="idSearchTitle" layoutX="226.0" layoutY="55.0" />
       <Button fx:id="idSearch" layoutX="400.0" layoutY="55.0" mnemonicParsing="false" text="Search" />
-      <Label layoutX="126.0" layoutY="59.0" text="Browse Songs" />
+      <Label layoutX="126.0" layoutY="59.0" text="Song Name" />
       <ListView fx:id="idDisplaySongs" layoutX="200.0" layoutY="118.0" prefHeight="200.0" prefWidth="200.0" />
       <Button fx:id="idPlay" layoutX="426.0" layoutY="128.0" mnemonicParsing="false" text="Play" />
       <Button fx:id="IdAddPlaylist" layoutX="426.0" layoutY="175.0" mnemonicParsing="false" text="Add to Playlist" />
+      <Label layoutX="126.0" layoutY="93.0" text="Song Genre" />
+      <TextField fx:id="idSearchGenre" layoutX="226.0" layoutY="89.0" />
    </children>
 </AnchorPane>
