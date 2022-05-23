@@ -112,6 +112,15 @@ public class SongService {
             exc.printStackTrace();
         }
     }
+    public void removeSong(String name, String author){
+        try{
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,       ResultSet.CONCUR_UPDATABLE);
+            String query = "delete from songs where name='"+name+"' and author = '"+author+"'";
+            statement.execute(query);
+        }catch(Exception exc){
+            exc.printStackTrace();
+        }
+    }
     void purgeDirectory(File dir) {
         for (File file: dir.listFiles()) {
             if (file.isDirectory())
