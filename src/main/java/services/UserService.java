@@ -1,18 +1,20 @@
 package services;
 
+import exceptions.UsernameAlreadyExistsException;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.sql.*;
 import java.awt.*;
 import java.security.*;
 import java.nio.charset.StandardCharsets;
-
+import exceptions.UsernameAlreadyExistsException;
 
 public class UserService{
-    private Connection connection = null;
-    private PreparedStatement preparedStatement = null;
+    private static Connection connection = null;
+    private static PreparedStatement preparedStatement = null;
 
-    public void connectToDatabase(String user, String password){
+    public static void connectToDatabase(String user, String password){
         try {
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/amplify_database?autoReconnect=true&useSSL=false",
@@ -21,7 +23,7 @@ public class UserService{
             exc.printStackTrace();
         }
     }
-    public void disconnectFromDatabase(){
+    public static void disconnectFromDatabase(){
         try{
             connection.close();
         }catch (Exception exc){
@@ -29,28 +31,30 @@ public class UserService{
         }
     }
 
-    public void insertUser(String username, String password){
+    public static void insertUser(String username, String password,String subscription) throws UsernameAlreadyExistsException{
         try{
-            String query=" insert into users (username, password)"
-                    + " values (?,?)";
+            String query=" insert into users (username, password,subscription)"
+                    + " values (?,?,?)";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString (1, username);
             preparedStatement.setString (2, encodePassword(username,password));
+            preparedStatement.setString (3, subscription);
             preparedStatement.execute();
         }catch(SQLIntegrityConstraintViolationException exc){
-            System.out.println("User already exists!");
+            throw new UsernameAlreadyExistsException(username);
         }catch(Exception exc){
             exc.printStackTrace();
         }
     }
-    public void insertUser(String username, String password,Blob profile_picture){
+    public static void insertUser(String username, String password,Blob profile_picture, String subscription){
         try {
-            String query = " insert into users (username, password, profile_picture)"
-                    + " values (?,?,?)";
+            String query = " insert into users (username, password, profile_picture,subscription)"
+                    + " values (?,?,?,?)";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, encodePassword(username,password));
             preparedStatement.setBlob(3, profile_picture);
+            preparedStatement.setString(4, subscription);
             preparedStatement.execute();
         }catch(SQLIntegrityConstraintViolationException exc){
             System.out.println("User already exists!");
