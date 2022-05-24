@@ -7,9 +7,10 @@
    <children>
       <Button fx:id="idLogin" layoutX="448.0" layoutY="187.0" mnemonicParsing="false" text="Login" />
       <TextField fx:id="idUserLogin" layoutX="202.0" layoutY="162.0" />
-      <TextField fx:id="idParolaLogin" layoutX="202.0" layoutY="224.0" />
+      <PasswordField fx:id="idParolaLogin" layoutX="202.0" layoutY="224.0" />
       <Label layoutX="99.0" layoutY="166.0" text="Username" />
       <Label layoutX="109.0" layoutY="228.0" text="Password" />
       <Label layoutX="277.0" layoutY="92.0" text="AMPLIFY" />
+      <Label fx:id="idMessageDisplay" layoutX="210.0" layoutY="281.0" prefHeight="26.0" prefWidth="138.0" />
    </children>
 </AnchorPane>
