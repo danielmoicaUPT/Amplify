@@ -2,8 +2,6 @@ package controllers;
 import exceptions.UsernameAlreadyExistsException;
 import javafx.fxml.FXML;
 import services.UserService;
-import javafx.fxml.*;
-
 import java.awt.*;
 
 public class RegistrationController {

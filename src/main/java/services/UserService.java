@@ -9,7 +9,7 @@ import java.awt.*;
 import java.security.*;
 import java.nio.charset.StandardCharsets;
 import exceptions.UsernameAlreadyExistsException;
-
+import exceptions.UsernameOrPasswordIncorrectException;
 public class UserService{
     private static Connection connection = null;
     private static PreparedStatement preparedStatement = null;
@@ -92,6 +92,22 @@ public class UserService{
         }
         return null;
     }
+
+    public static Boolean isUserInDatabase(String username,String password){
+        try {
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,       ResultSet.CONCUR_UPDATABLE);
+            String query = "select * from users where username='"+username +"' and password ='"
+                    +encodePassword(username,password)+"'";
+
+            ResultSet resultSet = statement.executeQuery(query);
+            if (resultSet.next()==false){
+                return false;
+            }else return true;
+        }catch(Exception exc){
+            exc.printStackTrace();
+        }
+        return true;
+    }
     void purgeDirectory(File dir) {
         for (File file: dir.listFiles()) {
             if (file.isDirectory())
@@ -124,7 +140,10 @@ public class UserService{
     public static void main(String[] args){
         UserService UserService_manager=new UserService();
         UserService_manager.connectToDatabase("root","amplify_admin69");
-        System.out.println(UserService_manager.getUser("RaMi_Admin","admin_amplify69"));
+        try {
+            UserService_manager.insertUser("RaMi_Admin", "admin_amplify69", "Premium");
+        }catch(UsernameAlreadyExistsException exc){}
+        System.out.println(UserService_manager.isUserInDatabase("RaMi_Admin","admin_amplify69"));
     }
     */
 }
