@@ -16,6 +16,9 @@ public class MainMenuController {
     private Button idMyPlaylist ;
     @FXML
     private Button idAccInfo;
+    @FXML
+    private Button idLogout;
+    @FXML
     public void MainMenutoSearch () throws Exception   {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("BrowseSongs.fxml"));
         Stage window  = (Stage) idSearch.getScene().getWindow();
@@ -35,6 +38,15 @@ public class MainMenuController {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("EditAccountInfo.fxml"));
         Stage window  = (Stage) idMyPlaylist.getScene().getWindow();
         window.setScene(new Scene(root,750,500));
+    }
+    public void Logout(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Login.fxml"));
+            Stage window = (Stage) idLogout.getScene().getWindow();
+            window.setScene(new Scene(root, 750, 500));
+        }catch(Exception exc){
+            exc.printStackTrace();
+        }
     }
 
 

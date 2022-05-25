@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 
 import java.awt.*;
 
+import javafx.scene.control.Button;
+
 public class EditAccountInfoController {
     @FXML
     private TextField idNewUsername;
@@ -19,4 +21,6 @@ public class EditAccountInfoController {
     private javafx.scene.control.Button idChangePicture;
     @FXML
     private javafx.scene.control.Button idChangeSub;
+
+
 }

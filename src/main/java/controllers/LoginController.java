@@ -25,7 +25,9 @@ public class LoginController {
     @FXML
     private Label idMessageDisplay;
     @FXML
-    public void LogintoMainMenu () throws Exception   {
+    private Button idRegister;
+    @FXML
+    public void LogintoMainMenu ()  {
         try {
             UserService.connectToDatabase("root", "amplify_admin69");
             if(UserService.isUserInDatabase(idUserLogin.getText(),idParolaLogin.getText())) {
@@ -33,13 +35,26 @@ public class LoginController {
                 Stage window = (Stage) idLogin.getScene().getWindow();
                 window.setScene(new Scene(root, 750, 500));
             }
+            UserService.disconnectFromDatabase();
         }catch(IncorrectPasswordException exc) {
             idMessageDisplay.setText("Password for this user is incorrect.");
             idParolaLogin.setText("");
         }catch (UserDoesntExistException exc){
             idMessageDisplay.setText("Username doesn't exist.");
             idUserLogin.setText("");
+        }catch (Exception exc){
+            exc.printStackTrace();
         }
 
     }
+    public void LogintoRegister() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("CreateAccount.fxml"));
+            Stage window = (Stage) idRegister.getScene().getWindow();
+            window.setScene(new Scene(root, 750, 500));
+        }catch(Exception exc){
+            exc.printStackTrace();
+        }
+    }
+
 }
