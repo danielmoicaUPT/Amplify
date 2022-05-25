@@ -1,15 +1,15 @@
 package services;
 
 import exceptions.UsernameAlreadyExistsException;
+import exceptions.IncorrectPasswordException;
+import exceptions.UserDoesntExistException;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.sql.*;
-import java.awt.*;
 import java.security.*;
 import java.nio.charset.StandardCharsets;
-import exceptions.UsernameAlreadyExistsException;
-import exceptions.UsernameOrPasswordIncorrectException;
+
 public class UserService{
     private static Connection connection = null;
     private static PreparedStatement preparedStatement = null;
@@ -93,17 +93,26 @@ public class UserService{
         return null;
     }
 
-    public static Boolean isUserInDatabase(String username,String password){
+    public static Boolean isUserInDatabase(String username,String password) throws UserDoesntExistException,IncorrectPasswordException{
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,       ResultSet.CONCUR_UPDATABLE);
-            String query = "select * from users where username='"+username +"' and password ='"
-                    +encodePassword(username,password)+"'";
+            String query = "select * from users where username='"+username+"'";
 
             ResultSet resultSet = statement.executeQuery(query);
-            if (resultSet.next()==false){
-                return false;
-            }else return true;
-        }catch(Exception exc){
+            if(resultSet.next()==false){
+                throw new UserDoesntExistException();
+            }else {
+
+                statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                query = "select * from users where username='" + username + "' and password ='"
+                        + encodePassword(username, password) + "'";
+
+                resultSet = statement.executeQuery(query);
+                if (resultSet.next() == false) {
+                    throw new IncorrectPasswordException();
+                } else return true;
+            }
+        }catch(java.sql.SQLException exc){
             exc.printStackTrace();
         }
         return true;
