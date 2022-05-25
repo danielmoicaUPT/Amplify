@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="idPlayPlaylist" layoutX="419.0" layoutY="188.0" mnemonicParsing="false" text="Play" />
+      <ListView fx:id="idMyPlaylistsList" layoutX="72.0" layoutY="127.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label layoutX="269.0" layoutY="64.0" text="My Playlists" />
+   </children>
+</AnchorPane>
