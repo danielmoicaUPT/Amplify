@@ -6,8 +6,8 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistrationController">
    <children>
       <Button fx:id="idCreeaza" layoutX="244.0" layoutY="329.0" mnemonicParsing="false" onAction="#HandleRegistration" text="Creeaza Cont" />
-      <TextField fx:id="idParola" layoutX="282.0" layoutY="79.0" />
-      <TextField fx:id="idConfirmParola" layoutX="282.0" layoutY="113.0" />
+      <PasswordField fx:id="idParola" layoutX="282.0" layoutY="79.0" />
+      <PasswordField fx:id="idConfirmParola" layoutX="282.0" layoutY="113.0" />
       <TextField fx:id="idUsername" layoutX="282.0" layoutY="146.0" />
       <Label layoutX="167.0" layoutY="83.0" text="Parola" />
       <Label layoutX="142.0" layoutY="117.0" text="Confirma Parola" />
