@@ -1,7 +1,6 @@
 package controllers;
 
 import exceptions.IncorrectPasswordException;
-import exceptions.UsernameAlreadyExistsException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,12 +9,10 @@ import services.UserService;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.stage.Window;
-import java.awt.*;
-import java.io.IOException;
 import javafx.scene.control.TextField;
 import exceptions.UserDoesntExistException;
 import javafx.scene.control.Label;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
+
 
 
 public class LoginController {
@@ -46,8 +43,7 @@ public class LoginController {
             idMessageDisplay.setText("Username doesn't exist.");
             idUserLogin.setText("");
         }catch (Exception exc){
-            idMessageDisplay.setText("Password for this user is incorrect.");
-            idParolaLogin.setText("");
+            exc.printStackTrace();
         }
     }
     public void LogintoRegister() {
