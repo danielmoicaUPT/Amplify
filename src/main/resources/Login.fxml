@@ -7,7 +7,7 @@
    <children>
       <Button fx:id="idLogin" layoutX="469.0" layoutY="187.0" mnemonicParsing="false" onAction="#LogintoMainMenu" text="Login" />
       <TextField fx:id="idUserLogin" layoutX="248.0" layoutY="162.0" />
-      <TextField fx:id="idParolaLogin" layoutX="249.0" layoutY="224.0" />
+      <PasswordField fx:id="idParolaLogin" layoutX="249.0" layoutY="224.0" />
       <Label layoutX="112.0" layoutY="166.0" text="Username" />
       <Label layoutX="122.0" layoutY="228.0" text="Parola" />
       <Label layoutX="277.0" layoutY="92.0" text="AMPLIFY" />
