@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.scene.control.Label;
+import services.UserService;
 
 public class MainMenuController {
     @FXML
@@ -18,6 +20,9 @@ public class MainMenuController {
     private Button idAccInfo;
     @FXML
     private Button idLogout;
+    @FXML
+    private Label idUsername;
+
     @FXML
     public void MainMenutoSearch () throws Exception   {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("BrowseSongs.fxml"));
@@ -36,7 +41,7 @@ public class MainMenuController {
     }
     public void MainMenutoAccInfo () throws Exception   {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("EditAccountInfo.fxml"));
-        Stage window  = (Stage) idMyPlaylist.getScene().getWindow();
+        Stage window  = (Stage) idAccInfo.getScene().getWindow();
         window.setScene(new Scene(root,750,500));
     }
     public void Logout(){

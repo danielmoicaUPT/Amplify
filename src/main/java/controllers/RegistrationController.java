@@ -10,7 +10,9 @@ import services.UserService;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
-import java.security.spec.ECField;
+import java.io.File;
+import java.nio.file.Files;
+import javax.sql.rowset.serial.SerialBlob;
 
 public class RegistrationController {
 
@@ -27,15 +29,19 @@ public class RegistrationController {
     @FXML
     private Button idBack;
     @FXML
+    private TextField idProfilePicture;
+    @FXML
     public void HandleRegistration () {
         try{
-            System.out.println(idConfirmParola.getText());
-            System.out.println(idParola.getText());
             if(idParola.getText().equals(idConfirmParola.getText())) {
-                System.out.println(idConfirmParola.getText());
                 UserService.connectToDatabase("root", "amplify_admin69");
-                UserService.insertUser(idUsername.getText(), idParola.getText(), "Premium");
-                UserService.disconnectFromDatabase();
+                if(idProfilePicture.getText()!=""){
+                    File picture = new File(idProfilePicture.getText());
+                    byte[] fileContent = Files.readAllBytes(picture.toPath());
+                    UserService.insertUser(idUsername.getText(),idParola.getText(),new SerialBlob(fileContent),"Premium");
+                }else {
+                    UserService.insertUser(idUsername.getText(), idParola.getText(), "Premium");
+                }
             }else{
                 throw new PasswordsMisatchException();
             }
@@ -54,6 +60,8 @@ public class RegistrationController {
         }
 
     }
+
+    @FXML
     public void Back(){
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Login.fxml"));

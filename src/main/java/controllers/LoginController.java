@@ -31,11 +31,12 @@ public class LoginController {
         try {
             UserService.connectToDatabase("root", "amplify_admin69");
             if(UserService.isUserInDatabase(idUserLogin.getText(),idParolaLogin.getText())) {
+                UserService.setUsername(idUserLogin.getText());
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MainMenu.fxml"));
                 Stage window = (Stage) idLogin.getScene().getWindow();
                 window.setScene(new Scene(root, 750, 500));
             }
-            UserService.disconnectFromDatabase();
+
         }catch(IncorrectPasswordException exc) {
             idMessageDisplay.setText("Password for this user is incorrect.");
             idParolaLogin.setText("");

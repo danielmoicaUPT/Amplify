@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane fx:id="idSearchSongs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainMenuController">
@@ -10,5 +11,7 @@
       <Button fx:id="idAccInfo" layoutX="238.0" layoutY="219.0" mnemonicParsing="false" onAction="#MainMenutoAccInfo" text="Account Information" />
       <Button fx:id="idMyPlaylist" layoutX="254.0" layoutY="181.0" mnemonicParsing="false" text="My Playlists" />
       <Button fx:id="idLogout" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#Logout" text="Log Out" />
+      <ImageView fx:id="idImage" fitHeight="52.0" fitWidth="87.0" layoutX="499.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="idUsername" layoutX="364.0" layoutY="27.0" prefHeight="26.0" prefWidth="97.0" />
    </children>
 </AnchorPane>
