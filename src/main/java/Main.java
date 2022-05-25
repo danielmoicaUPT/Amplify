@@ -9,14 +9,13 @@ import services.*;
 
 public class Main extends  Application{
     public static void main (String[] args){
-
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("CreateAccount.fxml"));
-        primaryStage.setTitle("Registration Example");
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Login.fxml"));
+        primaryStage.setTitle("Amplify");
         primaryStage.setScene(new Scene(root, 700, 500));
         primaryStage.show();
     }

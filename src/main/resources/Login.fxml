@@ -3,13 +3,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
    <children>
-      <Button fx:id="idLogin" layoutX="277.0" layoutY="298.0" mnemonicParsing="false" onAction="#LogintoMainMenu" text="Login" />
-      <TextField fx:id="idUserLogin" layoutX="323.0" layoutY="175.0" />
-      <TextField fx:id="idParolaLogin" layoutX="323.0" layoutY="224.0" />
-      <Label layoutX="223.0" layoutY="179.0" text="Username" />
-      <Label layoutX="233.0" layoutY="228.0" text="Parola" />
+      <Button fx:id="idLogin" layoutX="469.0" layoutY="187.0" mnemonicParsing="false" onAction="#LogintoMainMenu" text="Login" />
+      <TextField fx:id="idUserLogin" layoutX="248.0" layoutY="162.0" />
+      <TextField fx:id="idParolaLogin" layoutX="249.0" layoutY="224.0" />
+      <Label layoutX="112.0" layoutY="166.0" text="Username" />
+      <Label layoutX="122.0" layoutY="228.0" text="Parola" />
       <Label layoutX="277.0" layoutY="92.0" text="AMPLIFY" />
+      <Label fx:id="idMessageDisplay" layoutX="166.0" layoutY="298.0" prefHeight="34.0" prefWidth="279.0" />
    </children>
 </AnchorPane>
