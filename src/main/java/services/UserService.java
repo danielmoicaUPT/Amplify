@@ -1,11 +1,13 @@
 package services;
 
+import exceptions.PasswordsMisatchException;
 import exceptions.UsernameAlreadyExistsException;
 import exceptions.IncorrectPasswordException;
 import exceptions.UserDoesntExistException;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.security.spec.ECField;
 import java.sql.*;
 import java.security.*;
 import java.nio.charset.StandardCharsets;
@@ -13,7 +15,8 @@ import java.nio.charset.StandardCharsets;
 public class UserService {
     private static Connection connection = null;
     private static PreparedStatement preparedStatement = null;
-
+    private static String username=null;
+    private static Blob profile_picture=null;
     public static void connectToDatabase(String user, String password) {
         try {
             connection = DriverManager.getConnection(
@@ -31,7 +34,12 @@ public class UserService {
             exc.printStackTrace();
         }
     }
-
+    public static String getUsername(){
+        return username;
+    }
+    public static void setUsername(String newUsername){
+        username=newUsername;
+    }
     public static void insertUser(String username, String password, String subscription) throws UsernameAlreadyExistsException {
         try {
             String query = " insert into users (username, password,subscription)"
@@ -62,6 +70,23 @@ public class UserService {
             exc.printStackTrace();
         }
     }
+    public static void updateUser(String username,String password,String newUsername) throws UsernameAlreadyExistsException,IncorrectPasswordException{
+        try {
+            if (isUserInDatabase(newUsername, password)) {
+                throw new UsernameAlreadyExistsException("username");
+            }
+        }catch(UserDoesntExistException exc){
+            try{
+
+                String query = " update users set username = '"+newUsername+"' where username ='"+username+"' and " +
+                        "password ='"+password+"'";
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.execute();
+            }catch(Exception exc_general){
+                exc_general.printStackTrace();
+            }
+        }
+        }
 
     public byte[] convertPNGToByteArray(String name) {
 
