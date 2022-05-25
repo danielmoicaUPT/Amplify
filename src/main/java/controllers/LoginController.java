@@ -15,6 +15,9 @@ import java.io.IOException;
 import javafx.scene.control.TextField;
 import exceptions.UserDoesntExistException;
 import javafx.scene.control.Label;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
+
+
 public class LoginController {
     @FXML
     private TextField idUserLogin;
@@ -43,9 +46,9 @@ public class LoginController {
             idMessageDisplay.setText("Username doesn't exist.");
             idUserLogin.setText("");
         }catch (Exception exc){
-            exc.printStackTrace();
+            idMessageDisplay.setText("Password for this user is incorrect.");
+            idParolaLogin.setText("");
         }
-
     }
     public void LogintoRegister() {
         try {
