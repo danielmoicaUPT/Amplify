@@ -8,10 +8,10 @@
       <Button fx:id="idChangeUser" layoutX="408.0" layoutY="74.0" mnemonicParsing="false" text="Change Username" />
       <Button fx:id="idChangePassword" layoutX="410.0" layoutY="139.0" mnemonicParsing="false" text="Change Password" />
       <Button fx:id="idChangePicture" layoutX="410.0" layoutY="207.0" mnemonicParsing="false" text="Change Profile Picture" />
-      <Button layoutX="413.0" layoutY="260.0" mnemonicParsing="false" text="Change Subscription " />
-      <TextField layoutX="226.0" layoutY="74.0" />
-      <TextField layoutX="226.0" layoutY="109.0" />
-      <TextField layoutX="226.0" layoutY="160.0" />
+      <Button fx:id="idChangeSub" layoutX="413.0" layoutY="260.0" mnemonicParsing="false" text="Change Subscription " />
+      <TextField fx:id="idNewUsername" layoutX="226.0" layoutY="74.0" />
+      <TextField fx:id="idNewPassword" layoutX="226.0" layoutY="109.0" />
+      <TextField fx:id="idConfirmPassword" layoutX="226.0" layoutY="160.0" />
       <Label layoutX="58.0" layoutY="78.0" text="New Username" />
       <Label layoutX="60.0" layoutY="113.0" text="New Password" />
       <Label layoutX="60.0" layoutY="164.0" text="Confirm Password" />
