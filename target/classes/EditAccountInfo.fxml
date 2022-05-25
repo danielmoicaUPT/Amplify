@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EditAccountInfoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EditAccountInfoController" >
    <children>
       <Button fx:id="idChangeUser" layoutX="421.0" layoutY="74.0" mnemonicParsing="false" onAction="#ChangeUsername" text="Change Username" />
       <Button fx:id="idChangePicture" layoutX="411.0" layoutY="138.0" mnemonicParsing="false" text="Change Profile Picture" />
@@ -15,6 +15,6 @@
       <Label layoutX="273.0" layoutY="329.0" text="Password" />
       <PasswordField fx:id="idPassword" layoutX="363.0" layoutY="325.0" />
       <Label fx:id="idDisplay" layoutX="96.0" layoutY="257.0" prefHeight="26.0" prefWidth="134.0" />
-      <Button fx:id="idBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="◀" />
+      <Button fx:id="idBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#Back" text="◀" />
    </children>
 </AnchorPane>
