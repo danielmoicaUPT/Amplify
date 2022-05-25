@@ -1,7 +1,6 @@
 package controllers;
 
 import exceptions.IncorrectPasswordException;
-import exceptions.UsernameAlreadyExistsException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,11 +9,12 @@ import services.UserService;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.stage.Window;
-import java.awt.*;
-import java.io.IOException;
 import javafx.scene.control.TextField;
 import exceptions.UserDoesntExistException;
 import javafx.scene.control.Label;
+
+
+
 public class LoginController {
     @FXML
     private TextField idUserLogin;
@@ -45,7 +45,6 @@ public class LoginController {
         }catch (Exception exc){
             exc.printStackTrace();
         }
-
     }
     public void LogintoRegister() {
         try {
