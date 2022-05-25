@@ -3,12 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane fx:id="idSearchSongs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="idSearch" layoutX="249.0" layoutY="103.0" mnemonicParsing="false" text="Search Songs" />
-      <Button fx:id="idUpload" layoutX="250.0" layoutY="142.0" mnemonicParsing="false" text="Upload Song" />
-      <Button fx:id="idAccInfo" layoutX="238.0" layoutY="219.0" mnemonicParsing="false" text="Account Information" />
+      <Button fx:id="idSearch" layoutX="249.0" layoutY="103.0" mnemonicParsing="false" onAction="#MainMenutoSearch" text="Search Songs" />
+      <Button fx:id="idUpload" layoutX="250.0" layoutY="142.0" mnemonicParsing="false" onAction="#MainMenutoUpload" text="Upload Song" />
+      <Button fx:id="idAccInfo" layoutX="238.0" layoutY="219.0" mnemonicParsing="false" onAction="#MainMenutoAccInfo" text="Account Information" />
       <Button fx:id="idMyPlaylist" layoutX="254.0" layoutY="181.0" mnemonicParsing="false" text="My Playlists" />
    </children>
 </AnchorPane>
