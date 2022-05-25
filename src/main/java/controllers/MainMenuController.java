@@ -34,11 +34,13 @@ public class MainMenuController {
         Stage window  = (Stage) idUpload.getScene().getWindow();
         window.setScene(new Scene(root,750,500));
     }
+
     public void MainMenutoPlaylist () throws Exception   {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MyPlaylists.fxml"));
         Stage window  = (Stage) idMyPlaylist.getScene().getWindow();
         window.setScene(new Scene(root,750,500));
     }
+
     public void MainMenutoAccInfo () throws Exception   {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("EditAccountInfo.fxml"));
         Stage window  = (Stage) idAccInfo.getScene().getWindow();
@@ -53,6 +55,4 @@ public class MainMenuController {
             exc.printStackTrace();
         }
     }
-
-
 }
