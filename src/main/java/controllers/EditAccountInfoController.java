@@ -3,17 +3,13 @@ package controllers;
 import exceptions.IncorrectPasswordException;
 import exceptions.UsernameAlreadyExistsException;
 import javafx.fxml.FXML;
-
-import java.awt.*;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import services.UserService;
-
 import javafx.scene.control.TextField;
+
 public class EditAccountInfoController {
     @FXML
     private TextField idNewUsername;
