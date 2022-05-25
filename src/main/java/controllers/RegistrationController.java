@@ -1,4 +1,5 @@
 package controllers;
+import exceptions.PasswordsMisatchException;
 import exceptions.UsernameAlreadyExistsException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -6,7 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import services.UserService;
-import java.awt.*;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import java.security.spec.ECField;
 
 public class RegistrationController {
 
@@ -17,21 +21,47 @@ public class RegistrationController {
     @FXML
     private TextField idUsername;
     @FXML
-    private TextArea messageDisplay;
+    private Label idMessageDisplay;
     @FXML
-    private javafx.scene.control.Button idCreeaza;
+    private Button idCreeaza;
     @FXML
-    public void handleRegistration(){
+    private Button idBack;
+    @FXML
+    public void HandleRegistration () {
         try{
-            UserService.connectToDatabase("root","amplify_admin69");
-            UserService.insertUser(idUsername.getText(),idParola.getText(),"Premium");
+            System.out.println(idConfirmParola.getText());
+            System.out.println(idParola.getText());
+            if(idParola.getText().equals(idConfirmParola.getText())) {
+                System.out.println(idConfirmParola.getText());
+                UserService.connectToDatabase("root", "amplify_admin69");
+                UserService.insertUser(idUsername.getText(), idParola.getText(), "Premium");
+                UserService.disconnectFromDatabase();
+            }else{
+                throw new PasswordsMisatchException();
+            }
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Login.fxml"));
+            Stage window  = (Stage) idCreeaza.getScene().getWindow();
+            window.setScene(new Scene(root,750,500));
         }catch(UsernameAlreadyExistsException exc){
-            messageDisplay.append("Username already exists");
+            idMessageDisplay.setText("Username already exists");
+            idUsername.setText("");
+        }catch(PasswordsMisatchException exc) {
+            idMessageDisplay.setText("Passwords do not correspond");
+            idConfirmParola.setText("");
+            idParola.setText("");
+        }catch (Exception exc){
+            exc.printStackTrace();
         }
+
     }
-    public void RegistrationtoLogin () throws Exception   {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Login.fxml"));
-        Stage window  = (Stage) idCreeaza.getScene().getWindow();
-        window.setScene(new Scene(root,750,500));
+    public void Back(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Login.fxml"));
+            Stage window = (Stage) idBack.getScene().getWindow();
+            window.setScene(new Scene(root, 750, 500));
+        }catch(Exception exc){
+            exc.printStackTrace();
+        }
+
     }
 }
