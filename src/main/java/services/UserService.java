@@ -40,6 +40,7 @@ public class UserService {
     public static void setUsername(String newUsername){
         username=newUsername;
     }
+
     public static void insertUser(String username, String password, String subscription) throws UsernameAlreadyExistsException {
         try {
             String query = " insert into users (username, password,subscription)"

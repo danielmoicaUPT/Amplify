@@ -14,7 +14,6 @@ import exceptions.UserDoesntExistException;
 import javafx.scene.control.Label;
 
 
-
 public class LoginController {
     @FXML
     private TextField idUserLogin;

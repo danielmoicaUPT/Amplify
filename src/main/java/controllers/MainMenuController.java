@@ -2,14 +2,17 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
+import java.net.*;
+import java.util.ResourceBundle;
 import services.UserService;
 
-public class MainMenuController {
+public class MainMenuController implements Initializable {
     @FXML
     private Button idSearch;
     @FXML
@@ -22,7 +25,11 @@ public class MainMenuController {
     private Button idLogout;
     @FXML
     private Label idUsername;
+    @FXML
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        idUsername.setText(UserService.getUsername());
 
+    }
     @FXML
     public void MainMenutoSearch () throws Exception   {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("BrowseSongs.fxml"));
